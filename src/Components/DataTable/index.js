@@ -1,94 +1,26 @@
 import React from 'react';
 import './datatable.css';
 import ReactDOM from 'react-dom';
-import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
-import BootstrapTable from 'react-bootstrap-table-next';
-import paginationFactory from 'react-bootstrap-table2-paginator';
-import ToolkitProvider, { CSVExport } from 'react-bootstrap-table2-toolkit';
-
-
-
-
-
 
 export default class DataTable extends React.Component {
+    
     constructor(props) {
         super(props);
 
         this.state = {
-            
-           
-            columns : [{
-                dataField: '',
-                text: ''}],
-                
-          
                 headers : props.headers,
                 data: props.data,
                 sortby: null,
-                decending: null,
+                decending: null
+          
+                
         }
         this.keyField = props.keyField || "id";
         this.noData = props.noData || "No records found!";
         this.width = props.width || "100%";
-        this.addColumn = this.addColumn.bind(this);
 
     }  
-    
-    addColumn(event){
- 
-        var columns = this.state.columns;
-        this.setState({columns: [
-         ...columns, {
-           dataField: "age",
-           text: "AGE"
-         }
-       ]});
-     
      }    
-     
-     
-       renderTableColumn = () => {
-     const columnsList = this.state.columns;
-     const { ExportCSVButton } = CSVExport;
-     return ( 
-       <div>
-         <
-         ToolkitProvider 
-         keyField ="_id"
-             
-         data = {
-             this.state.data
-         }
-         columns = {
-             columnsList
-         }   
-         exportCSV
-         > 
-         
-     {
-     props => (
-       <div>
-         <h3 className="alignLeft title inline" >{this.props.id}</h3>
-     
-       
-     <button onClick={this.addColumn}>ADD CAR COLUMN</button>
-         <BootstrapTable { ...props.baseProps }
-           
-             bordered ={false}
-             bootstrap4 
-             hover 
-         />
-     
-       </div>
-     )
-     }
-     </ToolkitProvider>
-     </div>
-     );
-       }}
-
-
     onDragOver = (e) => {
         e.preventDefault();
     }
@@ -250,4 +182,4 @@ export default class DataTable extends React.Component {
             </div>
         )
     }
-}
+    

@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import DataTable from './Components/DataTable';
-
-
-
-
-
 class App extends Component {
   constructor(props){
   super(props);
-  
+
 
   let model = {
     headers: [
@@ -52,8 +47,7 @@ class App extends Component {
             </div>
           </div>
               
-          {row}</div>
-        
+          {row}</div> 
       )},
       {title: "", accessor: "completion_img", index:6, cell:  {
         type:"image",
@@ -63,8 +57,6 @@ class App extends Component {
       {title: "Due_date", accessor: "due_date", index:7},
       {title: "Priority", accessor: "priority", index:8},
       {title: "button" , accessor:"button", index:9 }
-
-      
     ],
     
       data: [
