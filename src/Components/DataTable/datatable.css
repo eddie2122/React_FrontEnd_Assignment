@@ -1,0 +1,67 @@
+.toolbar{
+    display: inline-block;
+    font-size: 0.7em;
+}
+
+.toolbar a, .toolbar button {
+    margin-left: 1px;
+}
+
+.data-table {
+    padding: 5px;
+    box-shadow: 2px 2px 2px 1px rgba(90, 88, 88);
+}
+
+data-inner-table {
+    width:100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    background-color: white;
+    padding: 7px;
+    position: relative;
+    width: 150px;
+    text-align: left;
+    font-weight: normal;
+    line-height: 2em;
+    text-align: left;
+
+}
+
+data-table td{
+    border: 1px solid #eee;
+    color: #212121;
+    vertical-align: middle;
+    padding: 4px 7px;
+    text-align: left;
+}
+
+.col-resizer{
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    cursor: col-resize;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    user-select: none;
+}
+
+
+.container {
+  position: relative;
+  display: inline-block;
+  background-color: skyblue;
+}
+.button {
+  padding: 0;
+  width: 50px;
+  border: 0;
+  background-color: skyblue;
+  color: #333;
+  cursor: pointer;
+  outline: 0;
+  font-size: 40px;
+}
