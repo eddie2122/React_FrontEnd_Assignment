@@ -1,3 +1,9 @@
+.App{
+    background-color: paleturquoise;
+    text-align: left;
+    position: absolute;
+}
+
 .toolbar{
     display: inline-block;
     font-size: 0.7em;
@@ -9,10 +15,11 @@
 
 .data-table {
     padding: 5px;
-    box-shadow: 2px 2px 2px 1px rgba(90, 88, 88);
+    box-shadow: 1px solid  rgba(90, 88, 88);
+    background-color: paleturquoise;
 }
 
-data-inner-table {
+.data-inner-table {
     width:100%;
     border-collapse: collapse;
 }
@@ -53,15 +60,60 @@ data-table td{
 .container {
   position: relative;
   display: inline-block;
-  background-color: skyblue;
+  background-color: paleturquoise;
+  width: 100%;
 }
 .button {
   padding: 0;
-  width: 50px;
+  width: 0px;
   border: 0;
-  background-color: skyblue;
+  background-color: grey;
   color: #333;
   cursor: pointer;
   outline: 0;
-  font-size: 40px;
+  font-size: 20px;
+}
+
+.workingOnIt
+{
+    background-color: orange;
+    
+}
+
+.stuck{
+    background-color: rgb(217, 0, 50);
+}
+
+.green{
+    background-color:rgb(15, 148, 59);
+}
+.WaitingForReview{
+    background-color: rgb(9, 176, 210);
+}
+.option1{   
+    background-color: rgb(187, 173, 238);
+}
+.option2{
+    background-color: rgb(91, 42, 216);
+}
+.critical{
+    background-color: rgb(91, 42, 108);
+}
+.status{
+    width: 90px;
+    font-weight: 1px;
+    font-size: 4vh;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    align-items: left;
+}
+
+.item{
+    text-align: left;
+    width: 500px;
+    font-weight: 100px;
+}
+
+.duedate{
+    font-size: 1vh;
 }
