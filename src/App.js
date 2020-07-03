@@ -59,7 +59,7 @@ class App extends Component {
           "align-items": "right",
         }}},
       {title: "Due_date", accessor: "due_date", index:7, width:"10px"},
-      {title: "Priority", accessor: "priority", index:8},
+      {title: "Priority", accessor: "priority", index:8, },
     ],
     
     
@@ -88,8 +88,9 @@ onUpdateTable = (field, id,value) => {
 render() {
   return (
     <div className="App">
+      <h3> Things to do</h3>
       <DataTable className="data-table"
-        title="Things to do"
+        
         keyField="id"
         edit={true}
         pagination={{

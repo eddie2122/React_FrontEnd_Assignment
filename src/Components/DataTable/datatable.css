@@ -1,7 +1,6 @@
 .App{
     background-color: paleturquoise;
     text-align: left;
-    position: absolute;
 }
 
 .toolbar{
@@ -22,6 +21,7 @@
 .data-inner-table {
     width:100%;
     border-collapse: collapse;
+    position: relative;
 }
 
 .data-table th {
