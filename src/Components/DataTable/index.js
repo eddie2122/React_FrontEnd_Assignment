@@ -1,6 +1,5 @@
 import React from "react";
 import "./datatable.css";
-import ReactDOM from "react-dom";
 export default class DataTable extends React.Component {
   constructor(props) {
     super(props);
@@ -17,6 +16,10 @@ export default class DataTable extends React.Component {
 
   onDragOver = (e) => {
     e.preventDefault();
+  };
+
+  onClick = (e) => {
+    document.getElementById("displaytable").style.display = "block";
   };
 
   onDragStart = (e, source) => {
@@ -140,7 +143,7 @@ export default class DataTable extends React.Component {
       [name]: value,
     };
     this.setState({
-      rows,
+      data,
     });
   };
 
@@ -150,7 +153,7 @@ export default class DataTable extends React.Component {
       mobile: "",
     };
     this.setState({
-      rows: [...this.state.rows, item],
+      data: [...this.state.data, item],
     });
   };
   handleRemoveRow = () => {
@@ -165,7 +168,7 @@ export default class DataTable extends React.Component {
   };
 
   renderTable = () => {
-    let title = this.props.title || "DataTable";
+    let title = this.props.title;
     let headerView = this.renderTableHeader();
     let contentView =
       this.state.data.length > 0 ? this.renderContent() : this.renderNoData();
@@ -186,65 +189,45 @@ export default class DataTable extends React.Component {
       <div className={this.props.className}>
         <div>
           {this.renderTable()}
-          <div className="container">
-            <div className="row clearfix">
-              <div className="col-md-12 column">
-                <table
-                  className="table table-bordered table-hover"
-                  id="tab_logic"
-                >
-                  <thead>
-                    <tr>
-                      <th className="text-center"> </th>
-                      <th className="text-center"> Item </th>
-                      <th className="text-center"> </th>
-                      <th className="text-center"> Owner </th>
-                      <th className="text-center"> Status </th>
-                      <th className="text-center"> </th>
-                      <th className="text-center">Due Date </th>
-                      <th className="text-center"> Priority </th>
-                      <th />
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {this.state.rows.map((item, idx) => (
-                      <tr id="addr0" key={idx}>
-                        <td>
-                          {" "}
-                          <img src="id.bmp" alt="||" width="30"></img>
-                        </td>
-                        <td>
-                          <input
-                            className="item1"
-                            type="text"
-                            name="name"
-                            value={this.state.rows[idx].name}
-                            onChange={this.handleChange(idx)}
-                          />
-                        </td>
-                        <td><img src="chat.png" alt="||" width="30"></img></td>
-                        <td><img src="profile.png" alt="||" width="40"></img></td>
-                        <td><button>Status </button> </td>
-                        <td></td>
-                        <td><input Date></input></td>
-                        <td>Priority</td>
-                          
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <button onClick={this.handleAddRow} className="btn btn-primary">
-                  Add Row
-                </button>
-                <button
-                  onClick={this.handleRemoveRow}
-                  className="btn btn-danger float-right"
-                >
-                  Delete Last Row
-                </button>
+          <tbody>
+            {this.state.rows.map((item, idx) => (
+              <div className="hide">
+                <tr id="addrow" key={idx}>
+                  <td>
+                    {" "}
+                    <img src="id.bmp" alt="||" width="30"></img>
+                  </td>
+                  <td>
+                    <input
+                      className="itemAdd"
+                      type="text"
+                      name="name"
+                      value={this.state.rows[idx].name}
+                      onChange={this.handleChange(idx)}
+                    />
+                  </td>
+                  <td>
+                    <img src="chat.png" alt="||" width="30"></img>
+                  </td>
+                  <td>
+                    <img src="profile.png" alt="||" width="40"></img>
+                  </td>
+                  <td>
+                    <button>Status </button>{" "}
+                  </td>
+                  <td></td>
+                  <td>
+                    <input Date></input>
+                  </td>
+                  <td>Priority</td>
+                </tr>
               </div>
-            </div>
-          </div>
+            ))}
+          </tbody>
+
+          <button className="Addrow" onClick={this.handleAddRow}>
+            Add
+          </button>
         </div>
       </div>
     );
