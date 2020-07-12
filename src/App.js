@@ -3,13 +3,18 @@ import "./App.css";
 import DataTable from "./Components/DataTable";
 import Statuses from "./Components/Statuses";
 
-
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      statuses: ['Working on it', 'Critical', 'Stuck', 'Done', 'Waiting for Review'],
+      statuses: [
+        "Working on it",
+        "Critical",
+        "Stuck",
+        "Done",
+        "Waiting for Review",
+      ],
       colorMapping: {},
       headers: [
         {
@@ -42,10 +47,7 @@ class App extends Component {
           accessor: "owner",
           width: "50px",
           index: 4,
-          cell: (row) => (
-
-            <i class="material-icons">account_circle</i>
-          ),
+          cell: (row) => <i class="material-icons">account_circle</i>,
         },
         {
           title: <td className="StatusHead">Status</td>,
@@ -53,7 +55,12 @@ class App extends Component {
           index: 5,
           width: "50px",
           cell: (row) => (
-            <Statuses statuses={this.state.statuses} colorMapping={this.state.colorMapping} insertNewStatus={this.insertNewStatus.bind(this)} row={row} />
+            <Statuses
+              statuses={this.state.statuses}
+              colorMapping={this.state.colorMapping}
+              insertNewStatus={this.insertNewStatus.bind(this)}
+              row={row}
+            />
           ),
         },
 
@@ -61,15 +68,21 @@ class App extends Component {
           title: <td className="StatusHead"></td>,
           accessor: "completion_img",
           index: 6,
-          cell: (row) => (
-
-            <i class="material-icons">check_circle</i>
-          ),
+          cell: (row) => <i class="material-icons">check_circle</i>,
         },
         { title: "DueDate", accessor: "due_date", index: 7, width: "10px" },
         {
-          title: "Priority", accessor: "priority", index: 8, cell: (row) => (
-            <Statuses statuses={['Urgent', 'High', 'Medium', 'Low']} colorMapping={[]} insertNewStatus={() => { }} row={row || 'Low'} nonEditable={true} />
+          title: "Priority",
+          accessor: "priority",
+          index: 8,
+          cell: (row) => (
+            <Statuses
+              statuses={["Urgent", "High", "Medium", "Low"]}
+              colorMapping={[]}
+              insertNewStatus={() => {}}
+              row={row || "Low"}
+              nonEditable={true}
+            />
             // <div className="priority">
             //   <select name="cars" id="cars">
             //     {/* <option value="Urgent" className="Urgent" selected>priority</option> */}
@@ -79,7 +92,7 @@ class App extends Component {
             //     <option value="audi" selected>Low</option>
             //   </select>
             // </div>
-          )
+          ),
         },
       ],
 
@@ -144,20 +157,22 @@ class App extends Component {
   }
 
   insertNewStatus(statusName) {
-    const colorMapping = this.state.colorMapping
-    const statuses = this.state.statuses
+    const colorMapping = this.state.colorMapping;
+    const statuses = this.state.statuses;
 
-    colorMapping[statusName] = this.getRandomColor()
-    statuses.push(statusName)
+    colorMapping[statusName] = this.getRandomColor();
+    statuses.push(statusName);
 
-    this.setState({ colorMapping, statuses })
+    this.setState({ colorMapping, statuses });
   }
 
   getRandomColor() {
-    return '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+    return (
+      "#" + ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, "0")
+    );
   }
 
-  onUpdateTable = (field, id, value) => { };
+  onUpdateTable = (field, id, value) => {};
   render() {
     return (
       <div className="App">

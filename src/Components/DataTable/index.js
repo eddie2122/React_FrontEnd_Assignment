@@ -195,7 +195,6 @@ export default class DataTable extends React.Component {
             {this.state.headers.map((itemcol, idx) => (
               <div className="hide">
                 <tr id="addrow" key={idx}>
-
                   <td>
                     <input
                       className="itemAdd"
@@ -208,7 +207,6 @@ export default class DataTable extends React.Component {
                   <td>
                     <button>Status </button>{" "}
                   </td>
-
 
                   <td>Priority</td>
                 </tr>
