@@ -106,7 +106,7 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  width: 250px;
+  width: 300px;
   height: auto;
   border: 1px solid rgb(197, 193, 193);
   box-shadow: 5px 10px 18px #888888;
@@ -118,8 +118,8 @@
   background-color: white;
   z-index: 1;
   align-items: center;
-  top: -58px;
-  right: -72px;
+  top: -55px;
+  right: -92px;
   border-collapse: separate;
   font-size: small;
   border-spacing: 10px;
@@ -150,59 +150,60 @@
   border-collapse: separate;
   font-size: small;
 }
-.dropbtn {
-  width: 150px;
-  height: 47px;
-  background-color: #f39d1c;
-  border-radius: 2px;
-  border-right: 10px solid #f1b65d;
-  color: white;
-  border-bottom: 1px solid white;
-  border-top: 1px solid white;
-  border-left: 1px solid white;
-}
+
 .working {
   font-family: Arial, Helvetica, sans-serif;
   background-color: rgb(235, 175, 102);
   padding: 10px;
-  width: 120px;
+  width: 125px;
   color: white;
+  font-size: 13px;
 }
 .critical {
   font-family: Arial, Helvetica, sans-serif;
   background-color: rgb(156, 53, 187);
   padding: 10px;
-  width: 100px;
+  width: 125px;
   color: white;
+  font-size: 13px;
 }
 .stuck {
   font-family: Arial, Helvetica, sans-serif;
   background-color: crimson;
   padding: 10px;
-  width: 100px;
+  width: 125px;
   color: white;
+  font-size: 13px;
 }
 .done {
   font-family: Arial, Helvetica, sans-serif;
   background-color: rgb(6, 192, 105);
   padding: 10px;
-  width: 100px;
+  width: 125px;
   color: white;
+  
 }
-.null1 {
+
+.waiting {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: rgb(168, 168, 168);
+  background-color: rgb(19, 70, 148);
   padding: 10px;
-  width: 100px;
-  color: rgb(168, 168, 168);
+  width: 125px;
+  color: white;
+  font-size: 13px;
 }
-.null2 {
+
+.generic {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: rgb(28, 103, 241);
   padding: 10px;
-  width: 100px;
-  color: rgb(28, 103, 241);
+  width: 125px;
+  color: white;
+  font-size: 13px;
 }
+.beta{
+    width:10px;
+}
+
 .Anchors {
   padding-bottom: 5px;
 }
@@ -219,4 +220,20 @@
   font-size: 30px;
   padding-left: 10px;
   padding-top: 10px;
+}
+
+.urgent {
+  background-color: rgb(156, 53, 187);
+}
+
+.high {
+  background-color: rgb(156, 53, 187);
+}
+
+.medium {
+  background-color: rgb(156, 53, 187);
+}
+
+.low {
+  background-color: rgb(156, 53, 187);
 }

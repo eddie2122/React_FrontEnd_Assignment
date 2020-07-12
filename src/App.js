@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import "./App.css";
 import DataTable from "./Components/DataTable";
-import { reduceHooks } from "react-table";
-//import "./Components/DataTable/status.css";
+import Statuses from "./Components/Statuses";
+
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    let model = {
+    this.state = {
+      statuses: ['Working on it', 'Critical', 'Stuck', 'Done', 'Waiting for Review'],
+      colorMapping: {},
       headers: [
         {
           title: (
@@ -31,7 +33,7 @@ class App extends Component {
           index: 3,
           cell: (row) => (
             <div className="chatImg">
-                <i class="material-icons">chat_bubble_outline</i>
+              <i class="material-icons">chat_bubble_outline</i>
             </div>
           ),
         },
@@ -42,7 +44,7 @@ class App extends Component {
           index: 4,
           cell: (row) => (
 
-              <i class="material-icons">account_circle</i>
+            <i class="material-icons">account_circle</i>
           ),
         },
         {
@@ -51,33 +53,7 @@ class App extends Component {
           index: 5,
           width: "50px",
           cell: (row) => (
-            <div class="dropdown">
-              <button class="dropbtn">{row}</button>
-              <div class="dropdown-content">
-                <table class="beta">
-                  <tbody>
-                    <tr>
-                      <option className="working">Working on it</option>
-                      <td className="critical">Critical</td>
-                    </tr>
-                    <tr>
-                      <td className="stuck">Stuck</td>
-                    </tr>
-                    <tr>
-                      <td className="done">Done</td>
-                    </tr>
-                    <tr>
-                      <td className="null1">Empty</td>
-                    </tr>
-                    <tr>
-                      <td className="null2">Empty</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <hr />
-                <a href="Edit.com">Add/Edit Labels</a>
-              </div>
-            </div>
+            <Statuses statuses={this.state.statuses} colorMapping={this.state.colorMapping} insertNewStatus={this.insertNewStatus.bind(this)} row={row} />
           ),
         },
 
@@ -89,19 +65,22 @@ class App extends Component {
 
             <i class="material-icons">check_circle</i>
           ),
-          },
-        { title: "Due_date", accessor: "due_date", index: 7, width: "10px" },
-        { title: "priority", accessor: "priority", index: 8, cell : (row) =>(
-          <div className="priority">
-            <select name="cars" id="cars">
-              <option value="Urgent" className="Urgent" selected>priority</option>
-              <option value="saab">Urgent</option>
-              <option value="mercedes">High</option>
-              <option value="audi">Medium</option>
-              <option value="audi">Low</option>
-            </select>
-          </div>
-        ) },
+        },
+        { title: "DueDate", accessor: "due_date", index: 7, width: "10px" },
+        {
+          title: "Priority", accessor: "priority", index: 8, cell: (row) => (
+            <Statuses statuses={['Urgent', 'High', 'Medium', 'Low']} colorMapping={[]} insertNewStatus={() => { }} row={row || 'Low'} nonEditable={true} />
+            // <div className="priority">
+            //   <select name="cars" id="cars">
+            //     {/* <option value="Urgent" className="Urgent" selected>priority</option> */}
+            //     <option value="saab">Urgent</option>
+            //     <option value="mercedes">High</option>
+            //     <option value="audi">Medium</option>
+            //     <option value="audi" selected>Low</option>
+            //   </select>
+            // </div>
+          )
+        },
       ],
 
       data: [
@@ -162,10 +141,23 @@ class App extends Component {
         //add array
       ],
     };
-    this.state = model;
   }
 
-  onUpdateTable = (field, id, value) => {};
+  insertNewStatus(statusName) {
+    const colorMapping = this.state.colorMapping
+    const statuses = this.state.statuses
+
+    colorMapping[statusName] = this.getRandomColor()
+    statuses.push(statusName)
+
+    this.setState({ colorMapping, statuses })
+  }
+
+  getRandomColor() {
+    return '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+  }
+
+  onUpdateTable = (field, id, value) => { };
   render() {
     return (
       <div className="App">

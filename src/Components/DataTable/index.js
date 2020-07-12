@@ -166,7 +166,7 @@ export default class DataTable extends React.Component {
       status: "",
     };
     this.setState({
-      headers: [ itemcol, ...this.state.headers],
+      headers: [itemcol, ...this.state.headers],
     });
   };
   renderTable = () => {
