@@ -1,168 +1,222 @@
-div:after {
-    content : "";
-    position: absolute;
-    right    : 0;
-    z-index: 100;
-    top  : 0;
-    width  : 3px;
-    height   : 50%;  /* or 100px */
-  }
-
-.inner{
-    height: 50%;
-    padding-right: 20px;
+* {
+  outline: none;
 }
-
-.App{
-    background-color: white;
-    width: 90%;
-    align-items: center;
-    justify-content: center;
-    padding-left: 50px;
-    padding-top: 30px;
-    padding-right: 50px;
+.App {
+  background-color: white;
+  width: 90%;
+  align-items: center;
+  justify-content: center;
+  padding-left: 120px;
+  padding-top: 30px;
+  padding-right: 50px;
 }
-
-.toolbar{
-    display: inline-block;
-    font-size: 0.7em;
- 
-}
-
-.toolbar a, .toolbar button {
-    margin-left: 1px;
-}
-
-.data-table {
-    padding: 5px;
-    background-color: white;
-}
-
 .data-inner-table {
-    width:100%;
-    background-color: rgb(239, 239, 245);
-   
-    
-    
+  width: 100%;
+  background-color: rgb(239, 239, 245);
+}
+.chatImg {
+  position: relative;
+  width: 56px;
+  padding-top: 0px;
+  padding-left: 20px;
+  color: rgb(182, 172, 172);
+  border-bottom: 1px solid rgb(223, 223, 223);
+}
+.owner {
+  width: 56px;
+  padding-top: 0px;
+  padding-left: 20px;
+  border-bottom: 1px solid rgb(223, 223, 223);
 }
 
 .data-table th {
-    background-color: white;
-    padding: 7px;
-    position: relative;
-    width: 150px;
-    font-weight: normal;
-    line-height: 2em;
-
+  background-color: white;
+  padding: 7px;
+  position: relative;
+  width: 150px;
+  font-weight: normal;
+  line-height: 2em;
 }
 
-.StatusHead{
-    background-color: rgb(239, 239, 245);
-    width: 150px;
-    text-align: center;
+.StatusHead {
+  background-color: rgb(239, 239, 245);
+  width: 150px;
+  text-align: center;
 }
 
-data-table td{
-    border: 1px solid rgb(161, 161, 196);
-    color: #212121;
-    vertical-align: middle;
-    padding: 4px 7px;
-    text-align: left;  
-}
-data-table td{
-    border-right: 10px solid rgb(199, 212, 218);
-}
-.workingOnIt
-{
-    background-color: orange;
-    width: 140px;
-    
+.item {
+  text-align: left;
+  width: 500px;
+  font-weight: 100px;
+  border-left: 10px solid rgb(90, 179, 218);
+  border-bottom: 1px solid rgb(223, 223, 223);
+  padding-left: 10px;
+  height: 47px;
+  padding-top: 10px;
 }
 
-.stuck{
-    background-color: rgb(217, 0, 50);
+.duedate {
+  font-size: 1vh;
+  border-bottom: 1px solid rgb(223, 223, 223);
 }
 
-.green{
-    background-color:rgb(15, 148, 59);
+.Addrow {
+  position: relative;
+  text-align: left;
+  width: 100%;
+  height: 40px;
+  font-weight: 100px;
+  border-left: 10px solid rgb(90, 179, 218);
+  border-bottom: 1px solid rgb(223, 223, 223);
+  padding-left: 10px;
+  background-color: rgb(239, 239, 245);
+  -ms-transform-origin-y: -10;
+  border-right: 10px solid rgb(199, 212, 218);
+  opacity: 0.4;
+  padding-bottom: 5px;
+  bottom: 22px;
+  border-top: 1px solid white;
 }
-.WaitingForReview{
-    background-color: rgb(9, 176, 210);
+.Addcol {
+  position: fixed;
+  left: 1150px;
+  bottom: 565px;
+  border: 0px solid white;
+  background-color: white;
+  width: fit-content;
 }
-.option1{   
-    background-color: rgb(187, 173, 238);
-}
-.option2{
-    background-color: rgb(91, 42, 216);
-}
-.critical{
-    background-color: rgb(91, 42, 108);
-}
-.status{
-    width: 160px;
-    font-weight: 2px;
-    font-size: 2.5vh;
-    font-family: Arial, Helvetica, sans-serif;
-    border-bottom: 1px solid rgb(223, 223, 223);
-    border-left: 1px solid;
-}
-
-.item{
-    text-align: left;
-    width: 500px;
-    font-weight: 100px;
-    border-left: 10px solid rgb(90, 179, 218);
-    border-bottom: 1px solid rgb(223, 223, 223);
-    padding-left: 10px;
+.Addcol:hover {
+  cursor: pointer;
 }
 
-.duedate{
-    font-size: 1vh;
+.hide {
+  display: none;
 }
 
-.button-pri{
-    border-bottom: 1px solid rgb(223, 223, 223);
-    padding-left: 10px;
-    text-align: left;
-    width: 1405x;
-    height: 40px;
-    font-weight: 80px;
-    background-color: black;
-    color: white;
-    border-right: 10px solid rgb(199, 212, 218);
-    
+.itemAdd {
+  position: absolute;
+  align-items: left;
+  width: 80%;
+  text-align: left;
+  padding-bottom: 20px;
 }
-#displaytable{
-    visibility: hidden;
-    display: none;
-    width: 100%;
-    border: 6;
+.blackColor {
+  color: black;
 }
+.dropdown-content {
+  display: none;
+  position: absolute;
+  width: 250px;
+  height: auto;
+  border: 1px solid rgb(197, 193, 193);
+  box-shadow: 5px 10px 18px #888888;
+  margin: 100px auto;
+  box-sizing: border-box;
+  border-radius: 4px;
+  text-align: center;
+  padding: 25px;
+  background-color: white;
+  z-index: 1;
+  align-items: center;
+  top: -58px;
+  right: -72px;
+  border-collapse: separate;
+  font-size: small;
+  border-spacing: 10px;
+}
+.dropdown-content:after {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-top: 1px solid rgb(197, 193, 193);
+  border-bottom: 0px solid black;
+  border-left: 1px solid rgb(197, 193, 193);
+  border-right: 0px solid black;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -12px;
+  content: "";
+  transform: rotate(45deg);
+  margin-bottom: -7px;
+  background-color: white;
+}
+.beta th,
+.beta td {
+  border: 1px solid white;
 
-.Addrow{
-    text-align: left;
-    width: 100%;
-    height: 100%;
-    font-weight: 100px;
-    border-left: 10px solid rgb(90, 179, 218);
-    border-bottom: 1px solid rgb(223, 223, 223);
-    padding-left: 10px;
-    background-color: rgb(239, 239, 245);
-    -ms-transform-origin-y: -10;
-    border-right: 10px solid rgb(199, 212, 218);
-    opacity: .4;
+  border-collapse: separate;
 }
-
-.hide{
-    display: none;
+.beta table {
+  border-collapse: separate;
+  font-size: small;
 }
-
-.itemAdd{
-    position: absolute;
-    align-items: left;
-    width: 80%;
-    text-align: left; 
+.dropbtn {
+  width: 150px;
+  height: 47px;
+  background-color: #f39d1c;
+  border-radius: 2px;
+  border-right: 10px solid #f1b65d;
+  color: white;
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
 }
-.blackColor{
-    color:black;
+.working {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(235, 175, 102);
+  padding: 10px;
+  width: 120px;
+  color: white;
+}
+.critical {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(156, 53, 187);
+  padding: 10px;
+  width: 100px;
+  color: white;
+}
+.stuck {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: crimson;
+  padding: 10px;
+  width: 100px;
+  color: white;
+}
+.done {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(6, 192, 105);
+  padding: 10px;
+  width: 100px;
+  color: white;
+}
+.null1 {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(168, 168, 168);
+  padding: 10px;
+  width: 100px;
+  color: rgb(168, 168, 168);
+}
+.null2 {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(28, 103, 241);
+  padding: 10px;
+  width: 100px;
+  color: rgb(28, 103, 241);
+}
+.Anchors {
+  padding-bottom: 5px;
+}
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown:hover .dropbtn {
+  border: 2px solid blue;
+}
+.material-icons {
+  font-size: 30px;
+  padding-left: 10px;
+  padding-top: 10px;
 }

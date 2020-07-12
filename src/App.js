@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import DataTable from "./Components/DataTable";
+import { reduceHooks } from "react-table";
+//import "./Components/DataTable/status.css";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -8,13 +11,17 @@ class App extends Component {
     let model = {
       headers: [
         {
-          title: <td type="button" style={{ color: "rgb(9, 176, 210)" }}> Things to do</td>,
+          title: (
+            <p type="button" style={{ color: "rgb(9, 176, 210)" }}>
+              Things to do
+            </p>
+          ),
           accessor: "item",
           width: "300px",
           index: 2,
           cell: (row) => (
             <div className="item">
-              <p>New Item</p>
+              <p>{row}</p>
             </div>
           ),
         },
@@ -22,50 +29,54 @@ class App extends Component {
           title: "",
           accessor: "chat_img",
           index: 3,
-          cell: row =>(
-           <p>hi</p>
-          )
-            
+          cell: (row) => (
+            <div className="chatImg">
+                <i class="material-icons">chat_bubble_outline</i>
+            </div>
+          ),
         },
-
         {
           title: "Owner",
           accessor: "owner",
           width: "50px",
           index: 4,
-          cell: {
-            type: "image",
-            style: {
-              "width": "25px",
-            },
-          },
+          cell: (row) => (
+
+              <i class="material-icons">account_circle</i>
+          ),
         },
         {
-          title: <td className = "StatusHead">Status</td>,
+          title: <td className="StatusHead">Status</td>,
           accessor: "status",
           index: 5,
-          "width": "50px",
+          width: "50px",
           cell: (row) => (
-            <div className="button">
-              <select className="status" name="ststus" onchange="test(this);">
-                <option className="workingOnIt" value="workingOnIt">
-                  Working on it
-                </option>
-                <option className="stuck" value="stuck" select="stuck">
-                  Stuck
-                </option>
-                <option className="WaitingForReview" value="WaitingForReview">
-                  WaitingForReview
-                </option>
-                <option className="green" value="Done">
-                  Done
-                </option>
-                <option value="Blank2" className="option1"></option>
-                <option value="Blank1" className="option2"></option>
-                <option value="Critical" className="critical">
-                  Critical
-                </option>
-              </select>
+            <div class="dropdown">
+              <button class="dropbtn">{row}</button>
+              <div class="dropdown-content">
+                <table class="beta">
+                  <tbody>
+                    <tr>
+                      <option className="working">Working on it</option>
+                      <td className="critical">Critical</td>
+                    </tr>
+                    <tr>
+                      <td className="stuck">Stuck</td>
+                    </tr>
+                    <tr>
+                      <td className="done">Done</td>
+                    </tr>
+                    <tr>
+                      <td className="null1">Empty</td>
+                    </tr>
+                    <tr>
+                      <td className="null2">Empty</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <hr />
+                <a href="Edit.com">Add/Edit Labels</a>
+              </div>
             </div>
           ),
         },
@@ -74,46 +85,23 @@ class App extends Component {
           title: <td className="StatusHead"></td>,
           accessor: "completion_img",
           index: 6,
-          cell: {
-            type: "image", 
-              style: {
-              "width": "20px",
-              "align-items": "right",
-            },
-          },
-        },
-        { title: "Due_date", accessor: "due_date", index: 7, width: "10px" },
-        {
-          title: "Priority",
-          accessor: "priority",
-          index: 8,
           cell: (row) => (
-            <div>
-              <td type="button" className="status" name="ststus" onchange="test(this);">
-              <div style={{display:"none"}}>
-                <option className="workingOnIt" value="workingOnIt">
-                  Working on it
-                </option>
-                <option className="stuck" value="stuck" select="stuck">
-                  Stuck
-                </option>
-                <option className="WaitingForReview" value="WaitingForReview">
-                  WaitingForReview
-                </option>
-                <option className="green" value="Done">
-                  Done
-                </option>
-                <option value="Blank2" className="option1"></option>
-                <option value="Blank1" className="option2"></option>
-                <option value="Critical" className="critical">
-                  Critical
-                </option>
-                </div>
-              </td>
-            
-            </div>
+
+            <i class="material-icons">check_circle</i>
           ),
-        },
+          },
+        { title: "Due_date", accessor: "due_date", index: 7, width: "10px" },
+        { title: "priority", accessor: "priority", index: 8, cell : (row) =>(
+          <div className="priority">
+            <select name="cars" id="cars">
+              <option value="Urgent" className="Urgent" selected>priority</option>
+              <option value="saab">Urgent</option>
+              <option value="mercedes">High</option>
+              <option value="audi">Medium</option>
+              <option value="audi">Low</option>
+            </select>
+          </div>
+        ) },
       ],
 
       data: [
@@ -121,7 +109,7 @@ class App extends Component {
           item: "New Item",
           chat_img: "chat.png",
           owner: "prefilenew1.png",
-          status: "workingOnIt",
+          status: "working on it",
           completion_img: "completion.png",
           due_date: "April 9",
           priority: "Urgent",
@@ -130,7 +118,7 @@ class App extends Component {
           item: "New Item",
           chat_img: "chat.png",
           owner: "prefilenew1.png",
-          status: "stuck",
+          status: "Stuck",
           completion_img: "completion.png",
           due_date: "April 10",
           priority: "High",
@@ -139,7 +127,7 @@ class App extends Component {
           item: "New Item",
           chat_img: "chat.png",
           owner: "prefilenew1.png",
-          status: "",
+          status: "Waiting for review",
           completion_img: "completion.png",
           due_date: "April 11",
           priority: "Medium",
@@ -148,7 +136,7 @@ class App extends Component {
           item: "New Item",
           chat_img: "chat.png",
           owner: "prefilenew1.png",
-          status: "",
+          status: "Done",
           completion_img: "completion.png",
           due_date: "April 12",
           priority: "Low",
@@ -157,7 +145,7 @@ class App extends Component {
           item: "mnhjbnkl",
           chat_img: "chat.png",
           owner: "prefilenew1.png",
-          status: "",
+          status: "Stuck",
           completion_img: "completion.png",
           due_date: "April 13",
           priority: "",
@@ -166,7 +154,7 @@ class App extends Component {
           item: "Task2",
           chat_img: "chat.png",
           owner: "prefilenew1.png",
-          status: "",
+          status: "Done",
           completion_img: "completion.png",
           due_date: "April 14",
           priority: "",

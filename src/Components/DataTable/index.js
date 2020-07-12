@@ -1,12 +1,14 @@
 import React from "react";
 import "./datatable.css";
+
 export default class DataTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      headers: props.headers,
-      data: props.data,
+      headers: props.headers || [],
+      data: props.data || [],
       rows: [{}],
+      cols: [{}],
     };
 
     this.keyField = props.keyField || "id";
@@ -77,7 +79,7 @@ export default class DataTable extends React.Component {
   renderNoData = () => {
     return (
       <tr>
-        <td colSpan={this.props.headers.length}>{this.noData}</td>
+        <td colSpan={this.state.headers.length}>{this.noData}</td>
       </tr>
     );
   };
@@ -125,16 +127,6 @@ export default class DataTable extends React.Component {
 
     return contentView;
   };
-
-  onShowEditer = (e) => {
-    let item = e.target.dataset.id;
-    this.setState({
-      edit: {
-        row: parseInt(e.target.dataset.eow, 10),
-        cell: e.target.cellIndex,
-      },
-    });
-  };
   handleChange = (idx) => (e) => {
     let data = this.state.data.slice(); //Give New Array
     const { name, value } = e.target;
@@ -147,26 +139,36 @@ export default class DataTable extends React.Component {
     });
   };
 
+  handleChangeCol = (idy) => (e) => {
+    let data = this.state.data.slice(); //Give New Array
+    const { name, value } = e.target;
+    const cols = [...this.state.cols];
+    cols[idy] = {
+      [name]: value,
+    };
+    this.setState({
+      data,
+    });
+  };
+
   handleAddRow = () => {
     const item = {
       name: "",
-      mobile: "",
+      status: "",
     };
     this.setState({
       data: [...this.state.data, item],
     });
   };
-  handleRemoveRow = () => {
+  handleAddCols = () => {
+    const itemcol = {
+      name: "",
+      status: "",
+    };
     this.setState({
-      rows: this.state.rows.slice(0, -1),
+      headers: [ itemcol, ...this.state.headers],
     });
   };
-  handleRemoveSpecificRow = (idx) => () => {
-    const rows = [...this.state.rows];
-    rows.splice(idx, 1);
-    this.setState({ rows });
-  };
-
   renderTable = () => {
     let title = this.props.title;
     let headerView = this.renderTableHeader();
@@ -189,36 +191,25 @@ export default class DataTable extends React.Component {
       <div className={this.props.className}>
         <div>
           {this.renderTable()}
-          <tbody>
-            {this.state.rows.map((item, idx) => (
+          <tbody className="align">
+            {this.state.headers.map((itemcol, idx) => (
               <div className="hide">
                 <tr id="addrow" key={idx}>
-                  <td>
-                    {" "}
-                    <img src="id.bmp" alt="||" width="30"></img>
-                  </td>
+
                   <td>
                     <input
                       className="itemAdd"
                       type="text"
                       name="name"
-                      value={this.state.rows[idx].name}
+                      value={this.state.headers[idx].name}
                       onChange={this.handleChange(idx)}
                     />
                   </td>
                   <td>
-                    <img src="chat.png" alt="||" width="30"></img>
-                  </td>
-                  <td>
-                    <img src="profile.png" alt="||" width="40"></img>
-                  </td>
-                  <td>
                     <button>Status </button>{" "}
                   </td>
-                  <td></td>
-                  <td>
-                    <input Date></input>
-                  </td>
+
+
                   <td>Priority</td>
                 </tr>
               </div>
@@ -226,7 +217,34 @@ export default class DataTable extends React.Component {
           </tbody>
 
           <button className="Addrow" onClick={this.handleAddRow}>
-            Add
+            Add Row
+          </button>
+          <thead>
+            {this.state.cols.map((item, idy) => (
+              <div className="hide">
+                <tr id="addrow" key={idy}>
+                  <tr>
+                    {" "}
+                    <img src="id.bmp" alt="||" width="30"></img>
+                  </tr>
+                  <tr>
+                    <input
+                      className="itemAddcol"
+                      value={this.state.cols[idy].name}
+                      onChange={this.handleChange(idy)}
+                    />
+                  </tr>
+
+                  <tr>
+                    <img src="profile.png" alt="||" width="40"></img>
+                  </tr>
+                </tr>
+              </div>
+            ))}
+          </thead>
+
+          <button className="Addcol" onClick={this.handleAddCols}>
+            <i class="material-icons">add_circle</i>
           </button>
         </div>
       </div>
